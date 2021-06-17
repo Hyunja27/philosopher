@@ -6,7 +6,7 @@
 /*   By: spark <spark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 13:18:13 by spark             #+#    #+#             */
-/*   Updated: 2021/06/14 22:17:05 by spark            ###   ########.fr       */
+/*   Updated: 2021/06/15 15:08:39 by spark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,17 +51,17 @@ void		print_message(t_philosopher *philo, int time)
 	if (philo->info->check_anyone_dead == FALSE)
 	{
 		if (philo->action == TAKING_FORK)
-			printf(C_GREN "[%d ms]" C_NRML " %d philo has taken a fork\n", time, philo->number);
+			printf(C_AQUA "[%d ms]" C_NRML " %d philo has taken a fork\n", time, philo->number);
 		else if (philo->action == EATING)
 		{
-			printf(C_GREN "[%d ms]" C_NRML " %d philo has taken a fork\n", time, philo->number);
-			printf(C_RED "[%d ms]" C_NRML " %d philo start eat         =%d times=\n",
+			printf(C_AQUA "[%d ms]" C_NRML " %d philo has taken a fork\n", time, philo->number);
+			printf(C_GREN "[%d ms]" C_NRML " %d philo start eat         =%d times=\n",
 					time, philo->number, philo->eating_count + 1);
 		}
 		else if (philo->action == SLEEPING)
 			printf(C_YLLW "[%d ms]" C_NRML " %d philo is sleeping..\n", time, philo->number);
 		else if (philo->action == THINKING)
-			printf(C_BLCK "[%d ms]" C_NRML " %d philo start thinking\n", time, philo->number);
+			printf(C_PRPL "[%d ms]" C_NRML " %d philo start thinking\n", time, philo->number);
 		else if (philo->action == DEAD)
 			printf(C_GREN "[%d ms]" C_NRML " %d philo died\n", time, philo->number);
 	}

@@ -6,13 +6,13 @@
 /*   By: spark <spark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 20:51:45 by spark             #+#    #+#             */
-/*   Updated: 2021/06/14 20:55:17 by spark            ###   ########.fr       */
+/*   Updated: 2021/06/17 17:16:44 by spark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void    clean_up_philo(t_info *info, t_philosopher *philo)
+void	clean_up_philo(t_info *info, t_philosopher *philo)
 {
 	int		i;
 
