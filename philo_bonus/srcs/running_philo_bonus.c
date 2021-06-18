@@ -6,7 +6,7 @@
 /*   By: spark <spark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 16:33:24 by spark             #+#    #+#             */
-/*   Updated: 2021/06/18 14:18:13 by spark            ###   ########.fr       */
+/*   Updated: 2021/06/18 16:31:07 by spark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ void	running_philo(t_info *info, t_philosopher *philo)
 
 	i = -1;
 	j = -1;
-	while (++i < info->philo_num)
-		pthread_create(&philo[i].tid, NULL, doing_all, &philo[i]);
-	while (++j < info->philo_num)
-		pthread_join(philo[j].tid, NULL);
+	// while (++i < info->philo_num)
+	// 	pthread_create(&philo[i].pid, NULL, doing_all, &philo[i]);
+	// while (++j < info->philo_num)
+	// 	pthread_join(philo[j].pid, NULL);
 }
 
 void	*doing_all(void *philosopher)
