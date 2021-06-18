@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   utils_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: spark <spark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 13:18:13 by spark             #+#    #+#             */
-/*   Updated: 2021/06/18 15:55:22 by spark            ###   ########.fr       */
+/*   Updated: 2021/06/18 14:18:17 by spark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philo_bonus.h"
 
 int			show_error(char *str)
 {
@@ -57,8 +57,8 @@ void		print_message(t_philosopher *philo, int time)
 		{
 			printf(CA "[%d ms]" CN " %d philo has taken a fork\n", \
 			time, philo->number);
-			printf(CG "[%d ms]" CN " %d philo start eat         \
-			=%d times=\n",
+			printf(CG "[%d ms]" CN " %d philo start eat         =%d \
+			times=\n",
 					time, philo->number, philo->eating_count + 1);
 		}
 		else if (philo->action == SLEEPING)
@@ -68,7 +68,7 @@ void		print_message(t_philosopher *philo, int time)
 			printf(CP "[%d ms]" CN " %d philo start thinking\n", time, \
 			philo->number);
 		else if (philo->action == DEAD)
-			printf(CR "[%d ms] %d philo died\n", time, \
+			printf(CG "[%d ms]" CN " %d philo died\n", time, \
 			philo->number);
 	}
 	pthread_mutex_unlock(&philo->info->for_not_twisted_msg);

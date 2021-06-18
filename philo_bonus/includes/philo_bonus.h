@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   philo_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: spark <spark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 12:58:04 by spark             #+#    #+#             */
-/*   Updated: 2021/06/18 12:59:32 by spark            ###   ########.fr       */
+/*   Updated: 2021/06/18 14:24:12 by spark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-# define PHILO_H
+#ifndef PHILO_BONUS_H
+# define PHILO_BONUS_H
 
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <pthread.h>
 # include <sys/time.h>
+# include <semaphore.h>
 
 # define CN "\033[0m"
 # define CB "\033[30m"
@@ -47,22 +48,20 @@ typedef struct		s_info
 	int				sleep_time;
 	int				life_time;
 	int				bucket_eat_time;
-	int				check_anyone_dead;
 	int				starting_time;
-	pthread_mutex_t	*fork;
-	pthread_mutex_t	for_not_twisted_msg;
+	sem_t			check_anyone_dead;
+	sem_t			*fork;
+	sem_t			for_not_twisted_msg;
 }					t_info;
 
 typedef struct		s_philosopher
 {
 	int				number;
-	int				left_fork;
-	int				right_fork;
 	int				eating_count;
 	int				time_of_recent_meal;
 	int				action;
 	t_info			*info;
-	pthread_t		tid;
+	pid_t			pid;
 }					t_philosopher;
 
 int					main(int ac, char *av[]);

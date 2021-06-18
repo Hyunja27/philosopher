@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: spark <spark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/11 12:57:20 by spark             #+#    #+#             */
-/*   Updated: 2021/06/18 15:32:42 by spark            ###   ########.fr       */
+/*   Created: 2021/06/18 13:43:54 by spark             #+#    #+#             */
+/*   Updated: 2021/06/18 15:33:02 by spark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philo_bonus.h"
 
 int		parse_info(t_info *info, char *av[], int ac)
 {
@@ -18,7 +18,7 @@ int		parse_info(t_info *info, char *av[], int ac)
 	info->life_time = ft_atoi(av[2]);
 	info->eat_time = ft_atoi(av[3]);
 	info->sleep_time = ft_atoi(av[4]);
-	if (info->philo_num < 0 || info->philo_num > 200 ||\
+	if (info->philo_num < -1 || info->philo_num > 200 ||\
 	info->life_time < 0 || info->life_time > 99999 ||\
 	info->eat_time < 0 || info->eat_time > 99999 ||\
 	info->sleep_time < 0 || info->sleep_time > 99999)
@@ -46,7 +46,7 @@ int		main(int ac, char *av[])
 	{
 		if (parse_info(&info, av, ac))
 			return (1);
-		if (info.bucket_eat_time < -1 || info.eat_time < 0 ||\
+		if (info.bucket_eat_time < 0 || info.eat_time < 0 ||\
 			info.sleep_time < 0 || info.life_time < 0 || info.philo_num < 0)
 			rt = show_error("Argment Value is Incorrect.");
 		init_philo(&info, &philo);
