@@ -6,7 +6,7 @@
 /*   By: spark <spark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 14:45:59 by spark             #+#    #+#             */
-/*   Updated: 2021/06/18 14:25:21 by spark            ###   ########.fr       */
+/*   Updated: 2021/06/18 16:24:04 by spark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,7 @@ void	init_info(t_info *info, t_philosopher **philo)
 
 	i = -1;
 	total = info->philo_num;
-	info->fork = malloc(sizeof(sem_t) * total);
-	while (++i < total)
-	{
-		pthread_mutex_init(&info->fork[i], NULL);
-		(*philo)[i].number = i + 1;
-	}
+	info->fork = sem_open(fork, O_CREAT | O_EXCL, 0644, total);
 	info->starting_time = get_time();
 	info->check_anyone_dead = 0;
 }
