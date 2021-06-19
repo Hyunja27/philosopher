@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   basic_action_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spark <spark@student.42.fr>                +#+  +:+       +#+        */
+/*   By: hyunja <hyunja@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 17:02:51 by spark             #+#    #+#             */
-/*   Updated: 2021/06/18 14:18:09 by spark            ###   ########.fr       */
+/*   Updated: 2021/06/19 16:41:05 by hyunja           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int				taking_fork(t_philosopher *philo)
 
 	if (philo->info->check_anyone_dead == 1)
 		return (SOMEONE_DIED);
-	pthread_mutex_lock(&philo->info->fork[philo->left_fork]);
+	sem_wait(philo->info->fork);
 	time = get_time() - philo->info->starting_time;
 	philo->action = TAKING_FORK;
 	print_message(philo, time);
@@ -59,7 +59,7 @@ int				eating(t_philosopher *philo)
 	must_eat_count = philo->info->bucket_eat_time;
 	if (philo->info->check_anyone_dead == TRUE)
 		return (SOMEONE_DIED);
-	pthread_mutex_lock(&philo->info->fork[philo->right_fork]);
+	sem_wait(philo->info->fork);
 	philo->time_of_recent_meal = get_time() - philo->info->starting_time;
 	philo->action = EATING;
 	print_message(philo, philo->time_of_recent_meal);
@@ -68,8 +68,8 @@ int				eating(t_philosopher *philo)
 			philo->info->check_anyone_dead == FALSE)
 		usleep(1000);
 	++philo->eating_count;
-	pthread_mutex_unlock(&philo->info->fork[philo->left_fork]);
-	pthread_mutex_unlock(&philo->info->fork[philo->right_fork]);
+	sem_post(philo->info->fork);
+	sem_post(philo->info->fork);
 	return (NO_ONE_DIED);
 }
 

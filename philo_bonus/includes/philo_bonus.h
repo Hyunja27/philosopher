@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spark <spark@student.42.fr>                +#+  +:+       +#+        */
+/*   By: hyunja <hyunja@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 12:58:04 by spark             #+#    #+#             */
-/*   Updated: 2021/06/18 14:24:12 by spark            ###   ########.fr       */
+/*   Updated: 2021/06/19 17:38:45 by hyunja           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ typedef struct		s_info
 	int				life_time;
 	int				bucket_eat_time;
 	int				starting_time;
-	sem_t			check_anyone_dead;
+	int				check_anyone_dead;
 	sem_t			*fork;
-	sem_t			for_not_twisted_msg;
+	sem_t			*for_not_twisted_msg;
 }					t_info;
 
 typedef struct		s_philosopher

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spark <spark@student.42.fr>                +#+  +:+       +#+        */
+/*   By: hyunja <hyunja@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 13:18:13 by spark             #+#    #+#             */
-/*   Updated: 2021/06/18 14:18:17 by spark            ###   ########.fr       */
+/*   Updated: 2021/06/19 16:27:45 by hyunja           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int			ft_atoi(const char *str)
 
 void		print_message(t_philosopher *philo, int time)
 {
-	pthread_mutex_lock(&philo->info->for_not_twisted_msg);
+	sem_wait(philo->info->for_not_twisted_msg);
 	if (philo->info->check_anyone_dead == FALSE)
 	{
 		if (philo->action == TAKING_FORK)
@@ -58,8 +58,7 @@ void		print_message(t_philosopher *philo, int time)
 			printf(CA "[%d ms]" CN " %d philo has taken a fork\n", \
 			time, philo->number);
 			printf(CG "[%d ms]" CN " %d philo start eat         =%d \
-			times=\n",
-					time, philo->number, philo->eating_count + 1);
+			times=\n",time, philo->number, philo->eating_count + 1);
 		}
 		else if (philo->action == SLEEPING)
 			printf(CY "[%d ms]" CN " %d philo is sleeping..\n", time, \
@@ -71,5 +70,5 @@ void		print_message(t_philosopher *philo, int time)
 			printf(CG "[%d ms]" CN " %d philo died\n", time, \
 			philo->number);
 	}
-	pthread_mutex_unlock(&philo->info->for_not_twisted_msg);
+	sem_post(philo->info->for_not_twisted_msg);
 }

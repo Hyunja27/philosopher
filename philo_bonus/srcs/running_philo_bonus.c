@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   running_philo_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spark <spark@student.42.fr>                +#+  +:+       +#+        */
+/*   By: hyunja <hyunja@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 16:33:24 by spark             #+#    #+#             */
-/*   Updated: 2021/06/18 16:31:07 by spark            ###   ########.fr       */
+/*   Updated: 2021/06/19 18:39:22 by hyunja           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,23 @@ void	running_philo(t_info *info, t_philosopher *philo)
 
 	i = -1;
 	j = -1;
-	// while (++i < info->philo_num)
-	// 	pthread_create(&philo[i].pid, NULL, doing_all, &philo[i]);
-	// while (++j < info->philo_num)
-	// 	pthread_join(philo[j].pid, NULL);
+	while (++i < info->philo_num)
+	{
+		philo[i].number = i + 1;
+		philo[i].pid = fork();
+		if (philo[i].pid < 0)
+		{
+			show_error("fork failed.");
+			return ;
+		}
+	}
+	while (++j < info->philo_num)
+	{
+		if (philo[j].pid == 0)
+			doing_all(&philo[j]);
+		else
+			wait(NULL);
+	}
 }
 
 void	*doing_all(void *philosopher)
