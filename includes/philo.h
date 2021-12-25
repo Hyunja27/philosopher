@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spark <spark@student.42.fr>                +#+  +:+       +#+        */
+/*   By: hyunja <hyunja@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 12:58:04 by spark             #+#    #+#             */
-/*   Updated: 2021/06/18 12:59:32 by spark            ###   ########.fr       */
+/*   Updated: 2021/12/25 15:21:35 by hyunja           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <pthread.h>
 # include <sys/time.h>
 
+
+// color setting
 # define CN "\033[0m"
 # define CB "\033[30m"
 # define CR  "\033[31m"
